@@ -7,18 +7,51 @@ const props = defineProps({
 
 // カラーパネルの配列
 // TODO: DBで動的にカラーパネルの追加修正を可能にする
+
+/*
+  type
+  normal: 常時単色
+  flash: 選択色が指定速度で点滅
+  gradation: 選択色が指定速度でグラデーション
+*/
 const colorPanel = [
-  "#FF5733", // 鮮やかなオレンジ
-  "#33FF57", // 鮮やかなグリーン
-  "#3357FF", // 鮮やかなブルー
-  "#FF33A1", // 鮮やかなピンク
-  "#33FFF5", // 鮮やかなアクア
-  "#F5FF33", // 鮮やかなイエロー
-  "#A133FF", // 紫
-  "#FF8C33", // 濃いオレンジ
-  "#333FFF", // ダークブルー
-  "#FF3333"  // 鮮やかなレッド
-];
+  {
+    // 初期画面
+    "color": ["black"],
+    "type": "home",
+    "msg": "DJ Live 2/17",
+    "subMsg": "Coming soon ...",
+    "label": ""
+  },
+  {
+    "color": ["black"],
+    "type": "",
+    "msg": "",
+    "subMsg": "",
+    "label": "Wait"
+  },
+  {
+    // フラッシュは点滅速度を設定
+    "color": ["#33FFF5"],
+    "type": "flash",
+    "speed": 10,
+    "msg": "",
+    "subMsg": ""
+  },
+  {
+    "color": ["#FF33A1"],
+    "type": "flash",
+    "speed": 60,
+    "msg": "",
+    "subMsg": ""
+  },
+  {
+    "color": ["#3357FF", "#33FFF5"],
+    "type": "gradation",
+    "msg": "",
+    "subMsg": ""
+  }
+]
 
 // 洗濯中のパネルを判別
 const selectedPanelId = ref(0);
@@ -51,9 +84,14 @@ const onChangeLight = (idx) => {
           >
             <v-card
               @click="onChangeLight(idx)"
-              :style="{ background: panel }"
+              :style="{ background: panel.color }"
             >
-             {{ panel }} 
+             <p 
+              class="label"
+              :style="(panel.type === 'home' || panel.color[0] === 'black') ? { background: 'gray', color: 'white' } : {}"
+              >
+              {{ panel.label }} {{ panel.type }} 
+             </p>
             </v-card>
           </div>
         </v-col>
@@ -80,6 +118,14 @@ const onChangeLight = (idx) => {
 .title {
   color: white;
   text-align: center;
+}
+
+.label {
+  text-align: center;
+}
+
+.dark-mode {
+  color: aliceblue;
 }
 
 </style>

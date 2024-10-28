@@ -27,9 +27,9 @@ io.on("connection", (socket) => {
         io.emit("hello", msg);
     });
 
-    socket.on("changeColor", (newColorCode) => {
-        console.log("GET changeColor : ", newColorCode);
-        io.emit("changeColor", newColorCode);
+    socket.on("changeColor", (newColor) => {
+        console.log("GET changeColor : ", newColor);
+        io.emit("changeColor", newColor);
     })
 
     socket.on("disconnect", () => {
