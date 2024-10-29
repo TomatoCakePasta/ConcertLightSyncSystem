@@ -6,7 +6,6 @@ import io from "socket.io-client";
 const PORT = 3000;
 
 const socket = io.connect(`127.0.0.1:${PORT}`);
-
 const lightColor = ref("blue")
 
 const msg = "test message"
