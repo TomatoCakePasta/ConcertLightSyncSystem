@@ -5,8 +5,7 @@ import io from "socket.io-client";
 
 const PORT = 3000;
 
-// const socket = io.connect(`http://localhost:${PORT}`);
-const socket = io.connect("https://concertlightsyncsystem.onrender.com:3000");
+const socket = io.connect(`127.0.0.1:${PORT}`);
 
 const lightColor = ref("blue")
 
